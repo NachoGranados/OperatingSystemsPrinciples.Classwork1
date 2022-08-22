@@ -1,13 +1,16 @@
 #include <stdio.h>
+#include <time.h>
 
-int factorialPila(int num) {
+long int factorialPila(int num) {
 
-    if(num == 1) {
+    // condicion de salida
+    if(num == 0) {
 
         return 1;
 
     } else {
 
+        // llamada recursiva
         return num * factorialPila(num - 1);
 
     }
@@ -15,12 +18,15 @@ int factorialPila(int num) {
 }
 
 int main() {
+    
+    double timeSpent = 0.0;
 
-    int num;
+    // inicio del contador de tiempo
+    clock_t begin = clock();
 
-    printf("Digite un numero: ");
-    scanf("%d", &num);
+    int num = 20;
 
+    // condicion del numero de entrada
     if(num < 0) {
 
         printf("No exite factorial para un numero negativo\n");
@@ -33,11 +39,19 @@ int main() {
 
         } else {
 
-            printf("El factorial de %d es %d \n", num, factorialPila(num));
+            printf("El factorial de %d es %ld \n", num, factorialPila(num));
 
         }
 
     }
+
+    // finalizacion del contador de tiempo
+    clock_t end = clock();
+
+    // calculo del tiempo total
+    timeSpent += (double)(end - begin) / CLOCKS_PER_SEC;
+
+    printf("El tiempo total de ejecucion fue de %f segundos\n", timeSpent);
 
     return 0;
 
